@@ -1,0 +1,27 @@
+.simpleSubstitution {
+  width: 1000px;
+
+  .optionArea {
+    width: 200px;
+    margin-bottom: 30px;
+  }
+
+  .contentArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    textarea {
+      resize: none;
+      font-size: 20px;
+    }
+    input {
+      width: 50px;
+      font-size: 20px;
+    }
+    .icon {
+      font-size: 30px;
+      margin: 20px;
+    }
+  }
+}

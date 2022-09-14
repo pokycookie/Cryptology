@@ -1,0 +1,46 @@
+@import "./color.scss";
+
+.App {
+  display: flex;
+  flex-direction: column;
+
+  header {
+    width: 100vw;
+    height: 70px;
+    background-color: $color-green;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .pages {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      p {
+        margin-left: 15px;
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  main {
+    width: 100vw;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
