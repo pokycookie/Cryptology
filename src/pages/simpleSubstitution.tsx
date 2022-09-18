@@ -1,16 +1,24 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import Table from "../components/table";
 import { shiftAsciiArr, toAscii } from "../lib";
 import "../scss/pages/simpleSubstitution.scss";
 
 export type TMode = "noLimit" | "alphabet";
+
+const planeArr: string[] = [];
+for (let i = 0; i < 26; i++) {
+  const char = String.fromCharCode(i + 97);
+  planeArr.push(char);
+}
 
 export default function SimpleSubstitution() {
   const [planeText, setPlaneText] = useState("");
   const [cipherText, setCipherText] = useState("");
   const [shift, setShift] = useState(0);
   const [mode, setMode] = useState<TMode>("alphabet");
+  const [tableArr, setTableArr] = useState<string[][]>([]);
 
   const inputHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (mode === "alphabet") {
@@ -39,9 +47,17 @@ export default function SimpleSubstitution() {
 
   useEffect(() => {
     const asciiArr = toAscii(planeText);
-    let shiftArr = shiftAsciiArr(asciiArr, shift, mode);
+    const shiftArr = shiftAsciiArr(asciiArr, shift, mode);
     const cipher = String.fromCharCode(...shiftArr);
     setCipherText(cipher);
+
+    // Set tableArr
+    const cipherArr: string[] = [];
+    for (let i = 0; i < 26; i++) {
+      const char = String.fromCharCode(...shiftAsciiArr([i + 97], shift, mode));
+      cipherArr.push(char);
+    }
+    setTableArr([planeArr, cipherArr]);
   }, [planeText, shift, mode]);
 
   return (
@@ -64,6 +80,7 @@ export default function SimpleSubstitution() {
         <FontAwesomeIcon className="icon" icon={faArrowRight} />
         <textarea cols={30} rows={3} readOnly value={cipherText}></textarea>
       </div>
+      <Table data={tableArr} />
     </div>
   );
 }

@@ -1,0 +1,20 @@
+@import "../color.scss";
+
+.table {
+  width: 100%;
+  display: grid;
+  border: 1px solid $color-green;
+  box-sizing: border-box;
+
+  .cell {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $color-green;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
