@@ -21,3 +21,26 @@ export function shiftAsciiArr(arr: number[], shift: number, options?: TMode) {
   });
   return resultArr;
 }
+
+export function toUppercase(arr: string[]) {
+  const resultArr: string[] = [];
+  arr.forEach((str) => {
+    const ascii = str.charCodeAt(0) - 32;
+    resultArr.push(String.fromCharCode(ascii));
+  });
+  return resultArr;
+}
+
+export function shuffle<T>(arr: T[]) {
+  const result = [...arr];
+  let current = arr.length;
+  let random;
+
+  while (current > 0) {
+    random = Math.floor(Math.random() * current);
+    current--;
+    [result[current], result[random]] = [result[random], result[current]];
+  }
+
+  return result;
+}
